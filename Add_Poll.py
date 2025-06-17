@@ -1,0 +1,41 @@
+import time
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://demo4.msampleqa.in/login")
+driver.find_element(By.XPATH,"//*[@formcontrolname='userId']").send_keys("1")
+driver.find_element(By.XPATH,"//*[@type='password']").send_keys("Admin@123")
+driver.find_element(By.XPATH,"//button[normalize-space()='Login']").click()
+driver.implicitly_wait(10)
+driver.find_element(By.XPATH,"//span[contains(text(),'Announcements')]").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//*[@id='cdk-accordion-child-4']/div/span[3]/span/mat-list-item/span").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//button[@class='button-uxcl mx-2']").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//textarea[@formcontrolname='question']").send_keys("New Poll")
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//input[@formcontrolname='optionName']").send_keys("A")
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//*[@placeholder='Enter Option 2']").send_keys("B")
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//span[contains(text(),'Select Posted To')]").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//div[normalize-space()='Select All']").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//select[@formcontrolname='keepPollForId']").click()
+driver.find_element(By.XPATH,"//select[@formcontrolname='keepPollForId']/option[@value='1']").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//input[@formcontrolname='resultTobePublic']").click()
+driver.implicitly_wait(5)
+driver.find_element(By.XPATH,"//button[normalize-space()='Submit']").click()
+time.sleep(15)
+if driver.current_url == "http://demo4.msampleqa.in/auth/polls":
+    print("Poll Added Successfully")
+else:
+    print("Add Poll Failed")
+time.sleep(5)
+driver.quit()
+

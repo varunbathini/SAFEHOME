@@ -1,0 +1,36 @@
+from selenium import webdriver
+import time
+from datetime import datetime
+from selenium.webdriver.common.by import By
+driver = webdriver.Chrome()
+driver.maximize_window()
+driver.get("http://demo4.msampleqa.in/login")
+driver.find_element(By.XPATH,"//*[@formcontrolname='userId']").send_keys("1")
+driver.find_element(By.XPATH,"//*[@type='password']").send_keys("Admin@123")
+driver.find_element(By.XPATH,"//button[normalize-space()='Login']").click()
+time.sleep(10)
+driver.find_element(By.XPATH,"//mat-expansion-panel-header//span[1]//mat-panel-title//div//span").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"//span[@class='mat-ripple mat-list-item-ripple']").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"//button[contains(text(),'Invite Other Visitor')]").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"//input[@placeholder='Enter Full Name']").send_keys("srikanth")
+time.sleep(5)
+driver.find_element(By.XPATH,"//input[@placeholder='Enter Mobile Number']").send_keys("7564565678")
+time.sleep(5)
+driver.find_element(By.XPATH,"//select[@class='form-select ng-untouched ng-pristine ng-invalid']").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"//select[@class='form-select ng-untouched ng-dirty ng-valid']").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"/html[1]/body[1]/app-root[1]/app-layout[1]/div[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/app-uv-other-visitor[1]/form[1]/div[1]/div[2]/div[1]/div[5]/div[1]/app-cmn-time-picker[1]/div[1]/input[1]").send_keys("8")
+time.sleep(5)
+driver.find_element(By.XPATH,"//label[normalize-space()='Yes']").click()
+time.sleep(5)
+driver.find_element(By.XPATH,"//button[normalize-space()='Submit']").click()
+time.sleep(10)
+if driver.current_url=="http://demo4.msampleqa.in/auth/visitors":
+    print("Invite Visitor successful")
+else:
+    print("Invite Visitor Failed")
+driver.quit()
